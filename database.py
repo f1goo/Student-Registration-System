@@ -8,3 +8,8 @@ class Database:
             database='student_db'
         )
         self.cursor = self.conn.cursor(dictionary=True)
+
+
+db = Database()
+db.cursor.execute("SHOW TABLES")
+print(db.cursor.execute.fetchall())
