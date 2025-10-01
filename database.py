@@ -9,7 +9,8 @@ class Database:
         )
         self.cursor = self.conn.cursor(dictionary=True)
 
-
-db = Database()
-db.cursor.execute("SHOW TABLES")
-print(db.cursor.execute.fetchall())
+def execute(self, query, params=None, commit=False):
+    self.cursor.execute(query, params or ())
+    if commit:
+        self.conn.commit()
+    return self.cursor
