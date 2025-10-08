@@ -24,3 +24,9 @@ class User:
 
     def login(self, username, password):
         hashed = hashlib.sha256(password.encode()).hexdigest()
+        result = self.db.execute("SELECT * FROM user WHERE username=%s", (username,)).fetchone()
+
+        if result and result["password"] == hashed:
+            return True
+        else:
+            return False

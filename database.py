@@ -8,9 +8,9 @@ class Database:
             database='student_db'
         )
         self.cursor = self.conn.cursor(dictionary=True)
-
-def execute(self, query, params=None, commit=False):
-    self.cursor.execute(query, params or ())
-    if commit:
-        self.conn.commit()
-    return self.cursor
+    
+    def execute(self, query, params=None, commit=False):
+        self.cursor.execute(query, params or ())
+        if commit:
+            self.conn.commit()
+        return self.cursor
