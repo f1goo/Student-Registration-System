@@ -11,3 +11,5 @@ class Student:
             commit = True
         )
         print(f"Student {name} has been added sucessfully")
+
+    def update_student()

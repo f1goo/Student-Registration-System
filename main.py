@@ -1,25 +1,25 @@
-from user import User
-from student import Student
+from users import Users
+from students import Students
 from database import Database
 from getpass import getpass
 
 db = Database()
-user = User(db)
-student = Student(db)
+users = Users(db)
+students = Students(db)
 
 while True:
-    print("\n1. Register\n2. Login\n3. Add Student\n4.Exit")
+    print("\n1. Register\n2. Login\n3. Add Student\n4. Get student by ID\n5. Update Student details\n6. Delete Student\n7.Exit")
     choice = input("Select option: ")
 
     if choice == '1':
         username = input("Username: ")
         password = getpass("Password: ")
-        user.register(username, password)
+        users.register(username, password)
 
     elif choice == '2':
         username = input("Username: ")
         password = getpass("Enter password: ")
-        if user.login(username, password):
+        if users.login(username, password):
             print("Login successful!")
         else:
             print("Invalid credentials")
@@ -29,9 +29,13 @@ while True:
         dob = input("Enter DOB (dd-mm-yyyy): ")
         course = input("Enter course: ")
         email = input("Enter email: ")
-        student.add_student(name,dob,course,email)
+        students.add_student(name,dob,course,email)
 
     elif choice == '4':
+        student_id = input("Enter the student id: ")
+        students.get_student_ID(student_id)
+
+    elif choice == '6':
         break
     else:
         print("Invalid input.")
