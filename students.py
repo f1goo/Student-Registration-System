@@ -23,6 +23,18 @@ class Students:
         else:
             print(f"No student with the student id {student_id}")
             return False
+        
+    def get_student_Name(self,name):
+        result = self.db.execute(
+            "SELECT * FROM students WHERE name=%s",
+            (name,)
+        ).fetchone()
+        if result:
+            print(f"Student found",result)
+            return True
+        else:
+            print(f"No student with the name: {name}")
+            return False
 
     def update_student_details(self, student_id, dob=None, course=None, email=None):
         query = "UPDATE students SET"
@@ -60,3 +72,13 @@ class Students:
             print(f"Student {student_id} deleted successfully")
         else:
             print(f"No student found with the student id: {student_id}")
+
+    def view_students(self):
+        results = self.db.execute("SELECT * FROM students").fetchall()
+
+        if results:
+            print("All Students: ")
+            for student in results:
+                print(student)
+        else:
+            print("No students in the database")
