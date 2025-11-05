@@ -32,10 +32,22 @@ while True:
         students.add_student(name,dob,course,email)
 
     elif choice == '4':
-        student_id = input("Enter the student id: ")
+        student_id = input("Enter the student ID: ")
         students.get_student_ID(student_id)
 
+    elif choice == '5':
+        student_id = input("Enter the student ID: ")
+        dob= input("Enter new DOB (leave blank to skip): ")
+        course = input("Enter new course (leave blank to skip): ")
+        email= input("Enter new email (leave blank to skip): ")
+        students.update_student_details(student_id, dob, course, email)
+        
     elif choice == '6':
+        student_id = input("Enter the student ID: ")
+        students.delete_student(student_id)
+
+    elif choice == '7':
         break
+
     else:
         print("Invalid input.")

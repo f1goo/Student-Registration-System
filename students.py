@@ -14,7 +14,7 @@ class Students:
 
     def get_student_ID(self,student_id):
         result = self.db.execute(
-            "SELECT * FROM users WHERE username=%s AND password=%s",
+            "SELECT * FROM students WHERE student_id=%s",
             (student_id,)
         ).fetchone()
         if result:
@@ -42,18 +42,21 @@ class Students:
         if not updates:
             print("No fields to update.")
             return
-        query = f"UPDATE student SET { ",".join(updates)} WHERE student_id = %s"
+        query = f"UPDATE students SET { ",".join(updates)} WHERE student_id = %s"
         values.append(student_id)
 
         self.db.execute(query, tuple(values),commit=True)
         print(f"Student {student_id} updated successfully!")
 
     def delete_student(self, student_id):
-        result = self.db.execute(
+        student_id = int(student_id)
+        self.db.execute(
             "DELETE FROM students WHERE student_id=%s",
-            (student_id,)
+             (student_id,),
+             commit = True 
         )
-        if result:
-            print(f"Student {student_id} deleted successfully", result)
+
+        if self.db.cursor.rowcount > 0:
+            print(f"Student {student_id} deleted successfully")
         else:
             print(f"No student found with the student id: {student_id}")
